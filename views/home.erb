@@ -1,8 +1,12 @@
-<a href="/new"><div>Register</div></a>
-<form method="POST" action="/log_in">
-  <label for="username">Username:</label><br>
-  <input name="username" id="username"><br>
-  <label for="password">Password:</label><br>
-  <input name="password" id="password"><br>
-  <button>Log In</button>
-</form>
+<% if session[:user_id] %>
+  <a href="/log_out">Log Out</a>
+<% else %>
+  <a href="/new"><div>Register</div></a>
+  <form method="POST" action="/log_in">
+    <label for="username">Username:</label><br>
+    <input name="username" id="username"><br>
+    <label for="password">Password:</label><br>
+    <input name="password" id="password"><br>
+    <button>Log In</button>
+  </form>
+<% end %>

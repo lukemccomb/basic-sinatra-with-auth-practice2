@@ -29,9 +29,14 @@ class App < Sinatra::Application
 
   post "/log_in" do
     hash = { username: params[:username], password: params[:password] }
-    user_hash = @user_database.all.detect { |userhash| userhash[:username] == hash[:username] && userhash[:password] == hash[:password] }
-    session[:id] = user_hash[:id]
-    flash[:notice] = "Welcome, #{user_hash[:username]}."
+    user_info = @user_database.all.detect { |user_hash| user_hash[:username] == hash[:username] && user_hash[:password] == hash[:password] }
+    session[:user_id] = user_info[:id]
+    flash[:notice] = "Welcome, #{user_info[:username]}."
+    redirect "/"
+  end
+
+  get "/log_out" do
+    session.delete(:user_id)
     redirect "/"
   end
 end

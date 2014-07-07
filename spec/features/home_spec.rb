@@ -24,5 +24,6 @@ feature "visitor can visit home page" do
     fill_in "password", with: "mccomb"
     click_on "Log In"
     expect(page).to have_content("Welcome, Luke.")
+    expect(page).to have_content("Log Out")
   end
 end
