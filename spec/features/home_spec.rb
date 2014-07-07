@@ -25,5 +25,10 @@ feature "visitor can visit home page" do
     click_on "Log In"
     expect(page).to have_content("Welcome, Luke.")
     expect(page).to have_content("Log Out")
+    click_on "Log Out"
+    expect(page).to have_content("Register")
+    expect(page).to have_content("Username:")
+    expect(page).to have_content("Password:")
+    expect(page).to have_button("Log In")
   end
 end
