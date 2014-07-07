@@ -26,4 +26,12 @@ class App < Sinatra::Application
     flash[:notice] = "Thank you for registering."
     redirect "/"
   end
+
+  post "/log_in" do
+    hash = { username: params[:username], password: params[:password] }
+    user_hash = @user_database.all.detect { |userhash| userhash[:username] == hash[:username] && userhash[:password] == hash[:password] }
+    session[:id] = user_hash[:id]
+    flash[:notice] = "Welcome, #{user_hash[:username]}."
+    redirect "/"
+  end
 end
