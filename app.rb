@@ -20,4 +20,10 @@ class App < Sinatra::Application
     erb :new
   end
 
+  post "/new_user" do
+    hash = { username: params[:username], password: params[:password] }
+    @user_database.insert(hash)
+    flash[:notice] = "Thank you for registering."
+    redirect "/"
+  end
 end

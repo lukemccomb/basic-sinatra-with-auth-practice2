@@ -4,6 +4,12 @@
   <title>Basic Sinatra W/ Auth 2</title>
 </head>
 <body>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <%= yield %>
+
 </body>
 </html>
